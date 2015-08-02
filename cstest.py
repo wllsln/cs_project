@@ -22,7 +22,7 @@ class TestCrowdstrike:
                       cls.config.get('mysql', 'port'),
                       cls.config.get('mysql', 'user'),
                       cls.config.get('mysql', 'passwd'),
-                      cls.config.get('mysql', 'db')).connection
+                      cls.config.get('mysql', 'db'))
 
     def teardown_class(cls):
         '''
@@ -45,8 +45,13 @@ class TestCrowdstrike:
         '''
         pass
 
-    def test_first_function(self):
+    def test_insert_mapping(self):
         '''
         This is a sample test for the first push.
         '''
-        assert self.db.cursor == False
+        table_name = self.config.get('table_names', 'mapping')
+        self.db.create_mapping(table_name)
+        self.db.cursor.execute("SELECT * FROM {tn} LIMIT 0".format(tn=table_name))
+        headers = [column[0] for column in self.db.cursor.description]
+        
+        assert headers == ['ID', 'PAGENAME', 'PAGEURL']
