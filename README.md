@@ -53,9 +53,9 @@ The pages to be measured will be:
 - Blog
 
 History will have three tables:
-1. mapping numerical page_keys to page_names as strings
-2. mapping page_keys to load_times in seconds
-3. mapping page_keys to load_status success or failure
+ 1. mapping numerical page_keys to page_names as strings
+ 2. mapping page_keys to load_times in seconds
+ 3. mapping page_keys to load_status success or failure
 
 Components of the executive report
 --------------
